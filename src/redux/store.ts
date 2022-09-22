@@ -1,11 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
-import users from './slices/usersSlice';
-import messages from './slices/messagesSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import auth from "./slices/authSlice";
+import dragon from "./slices/dragonSlice";
 
 export const store = configureStore({
   reducer: {
-    users,
-    messages,
+    auth,
+    dragon,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

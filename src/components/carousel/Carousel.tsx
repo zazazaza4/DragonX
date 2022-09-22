@@ -2,15 +2,16 @@ import { FC } from "react";
 import { Carousel as ResponsiveCarousel } from "react-responsive-carousel";
 import { ICarouselProps } from "./Carousel.props";
 
+import styles from "./Carousel.module.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const Carousel: FC<ICarouselProps> = ({ images }) => {
+const Carousel: FC<ICarouselProps> = ({ images, className, ...props }) => {
   return (
-    <ResponsiveCarousel>
-      {images.map((image) => {
+    <ResponsiveCarousel className={className} {...props}>
+      {images.map((item) => {
         return (
-          <div>
-            <img src={image} alt={image} />
+          <div className={styles.container}>
+            <img src={item} alt={item} className={styles.image} />
           </div>
         );
       })}
