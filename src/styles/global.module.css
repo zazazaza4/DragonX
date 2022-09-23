@@ -1,0 +1,24 @@
+.link {
+  transition: all 0.3s ease-in-out;
+}
+
+.link:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.link:active {
+  color: brown;
+  cursor: pointer;
+}
+
+.link_scale {
+  transition: all 0.2s ease-in-out;
+}
+
+.link_scale:active {
+  transform: scale(0.95);
+}
+.link_scale:hover {
+  transform: scale(1.05);
+}

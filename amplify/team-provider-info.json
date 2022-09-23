@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-madappgang-dev-144251-authRole",
+      "UnauthRoleArn": "arn:aws:iam::114783444615:role/amplify-madappgang-dev-144251-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::114783444615:role/amplify-madappgang-dev-144251-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-madappgang-dev-144251-deployment",
+      "UnauthRoleName": "amplify-madappgang-dev-144251-unauthRole",
+      "StackName": "amplify-madappgang-dev-144251",
+      "StackId": "arn:aws:cloudformation:eu-west-2:114783444615:stack/amplify-madappgang-dev-144251/dc022660-3b34-11ed-beba-06122c0958ae",
+      "AmplifyAppId": "dhqyjrhilrh01"
+    },
+    "categories": {
+      "auth": {
+        "madappgangadfec3a5": {}
+      }
+    }
+  }
+}

@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { IFieldProps } from "./Field.props";
+import { FieldProps } from "./Field.props";
 
 import styles from "./Field.module.css";
 
-const Field: FC<IFieldProps> = ({
+const Field: FC<FieldProps> = ({
   type,
   label = "",
   value,
@@ -11,8 +11,8 @@ const Field: FC<IFieldProps> = ({
   ...props
 }) => {
   return (
-    <div className={`${styles.txt_field} ${className}`} {...props}>
-      <input type={type} required value={value} />
+    <div className={`${styles.txt_field} ${className}`}>
+      <input type={type} required value={value} {...props} />
       <span></span>
       <label>{label}</label>
     </div>

@@ -1,25 +1,8 @@
 import Main from "../pages/Main/Main";
-import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
-import {
-  MAIN_ROUTE,
-  LOGIN_ROUTE,
-  REGISTER_ROUTE,
-  SINGLE_ROUTE,
-} from "../utils/consts";
+import { MAIN_ROUTE, SINGLE_ROUTE, PROFILE_ROUTE } from "../utils/consts";
 import { IRoute } from "../interfaces/route.interface";
 import Single from "../pages/Single/Single";
-
-export const publicRoutes: IRoute[] = [
-  {
-    path: LOGIN_ROUTE,
-    Component: Login,
-  },
-  {
-    path: REGISTER_ROUTE,
-    Component: Register,
-  },
-];
+import Profile from "../pages/Profile/Profile";
 
 export const privateRoutes: IRoute[] = [
   {
@@ -29,5 +12,9 @@ export const privateRoutes: IRoute[] = [
   {
     path: SINGLE_ROUTE,
     Component: Single,
+  },
+  {
+    path: PROFILE_ROUTE,
+    Component: Profile,
   },
 ];

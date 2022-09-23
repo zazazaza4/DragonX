@@ -1,4 +1,4 @@
-export interface ICarouselProps {
+export interface CarouselProps {
   images: string[];
   className?: string;
 }

@@ -4,9 +4,9 @@
   min-height: 100vh;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
-    '. header  header .'
-    '. sidebar  body .'
-    'footer footer  footer footer';
+    ". header  header ."
+    "sidebar body  body ."
+    "footer footer  footer footer";
 }
 
 .header {
@@ -30,9 +30,9 @@
   .wrapper {
     grid-template-columns: minmax(320px, 1200px);
     grid-template-areas:
-      'header'
-      'body'
-      'footer';
+      "header"
+      "body"
+      "footer";
   }
 
   .sidebar {

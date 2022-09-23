@@ -1,17 +1,24 @@
 import { FC } from "react";
 import { Carousel as ResponsiveCarousel } from "react-responsive-carousel";
-import { ICarouselProps } from "./Carousel.props";
+import { CarouselProps } from "./Carousel.props";
+import { Image } from "@aws-amplify/ui-react";
 
 import styles from "./Carousel.module.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const Carousel: FC<ICarouselProps> = ({ images, className, ...props }) => {
+const Carousel: FC<CarouselProps> = ({ images, className = "", ...props }) => {
   return (
-    <ResponsiveCarousel className={className} {...props}>
-      {images.map((item) => {
+    <ResponsiveCarousel
+      swipeable={true}
+      dynamicHeight={true}
+      infiniteLoop={true}
+      className={`${styles.carousel} ${className}`}
+      {...props}
+    >
+      {images.map((item, index) => {
         return (
-          <div className={styles.container}>
-            <img src={item} alt={item} className={styles.image} />
+          <div key={index} className={styles.container}>
+            <img src={item} alt={item} />
           </div>
         );
       })}

@@ -1,92 +1,34 @@
+import {
+  Divider,
+  Flex,
+  Heading,
+  Link as LinkAws,
+  Loader,
+  Text,
+  useTheme,
+  View,
+} from "@aws-amplify/ui-react";
 import { FC } from "react";
-import { Carousel, Title } from "../../components";
+import { useParams } from "react-router-dom";
+import { Carousel } from "../../components";
 import { withLayout } from "../../layout/Layout";
-
-import styles from "./Single.module.css";
-
-const dragon = {
-  heat_shield: {
-    material: "PICA-X",
-    size_meters: 3.6,
-    temp_degrees: 3000,
-    dev_partner: "NASA",
-  },
-  launch_payload_mass: {
-    kg: 6000,
-    lb: 13228,
-  },
-  launch_payload_vol: {
-    cubic_meters: 25,
-    cubic_feet: 883,
-  },
-  return_payload_mass: {
-    kg: 3000,
-    lb: 6614,
-  },
-  return_payload_vol: {
-    cubic_meters: 11,
-    cubic_feet: 388,
-  },
-  pressurized_capsule: {
-    payload_volume: {
-      cubic_meters: 11,
-      cubic_feet: 388,
-    },
-  },
-  trunk: {
-    trunk_volume: {
-      cubic_meters: 14,
-      cubic_feet: 494,
-    },
-    cargo: {
-      solar_array: 2,
-      unpressurized_cargo: true,
-    },
-  },
-  height_w_trunk: {
-    meters: 7.2,
-    feet: 23.6,
-  },
-  diameter: {
-    meters: 3.7,
-    feet: 12,
-  },
-  first_flight: "2010-12-08",
-  flickr_images: [
-    "https://i.imgur.com/9fWdwNv.jpg",
-    "https://live.staticflickr.com/8578/16655995541_078768dea2_b.jpg",
-    "https://farm3.staticflickr.com/2815/32761844973_4b55b27d3c_b.jpg",
-    "https://farm9.staticflickr.com/8618/16649075267_d18cbb4342_b.jpg",
-  ],
-  name: "Dragon 1",
-  type: "capsule",
-  active: true,
-  crew_capacity: 0,
-  sidewall_angle_deg: 15,
-  orbit_duration_yr: 2,
-  dry_mass_kg: 4200,
-  dry_mass_lb: 9300,
-  thrusters: [
-    {
-      type: "Draco",
-      amount: 18,
-      pods: 4,
-      fuel_1: "nitrogen tetroxide",
-      fuel_2: "monomethylhydrazine",
-      isp: 300,
-      thrust: {
-        kN: 0.4,
-        lbf: 90,
-      },
-    },
-  ],
-  wikipedia: "https://en.wikipedia.org/wiki/SpaceX_Dragon",
-  description:
-    "Dragon is a reusable spacecraft developed by SpaceX, an American private space transportation company based in Hawthorne, California. Dragon is launched into space by the SpaceX Falcon 9 two-stage-to-orbit launch vehicle. The Dragon spacecraft was originally designed for human travel, but so far has only been used to deliver cargo to the International Space Station (ISS).",
-  id: "5e9d058759b1ff74a7ad5f8f",
-};
+import { useGetDragonQuery } from "../../redux/api/dragonApi";
 
 const Single: FC = () => {
+  const { tokens } = useTheme();
+  const param = useParams();
+
+  const id = param?.id || "";
+  const { isError, data: dragon, isLoading } = useGetDragonQuery(id);
+
+  if (isLoading) {
+    return (
+      <Flex height="100vh" justifyContent="center" alignItems="center">
+        <Loader width="10rem" />
+      </Flex>
+    );
+  }
+
   const renderRow = (
     title: string,
     value: number,
@@ -95,24 +37,32 @@ const Single: FC = () => {
     subUnit: string
   ) => {
     return (
-      <div className={styles.info}>
-        <div className={styles.item}>{title}</div>
-        <div className={styles.value}>
-          {value} {unit}{" "}
-          <span>
-            {subValue} {subUnit}
-          </span>
-        </div>
-      </div>
+      <>
+        <Flex
+          padding="20px 10px"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Heading level={6}>{title}</Heading>
+          <Text fontWeight={700}>
+            {value} {unit}
+            <Text as="span" color={tokens.colors.neutral[80]}>
+              {" / "}
+              {subValue} {subUnit}
+            </Text>
+          </Text>
+        </Flex>
+        <Divider />
+      </>
     );
   };
 
-  const overviewDragonEl = [
+  const overviewDragonEl = dragon && [
     renderRow(
       "HEIGHT",
-      dragon.height_w_trunk.meters,
+      dragon?.height_w_trunk.meters,
       "m",
-      dragon.height_w_trunk.feet,
+      dragon?.height_w_trunk.feet,
       "ft"
     ),
     renderRow(
@@ -146,27 +96,24 @@ const Single: FC = () => {
   ];
 
   return (
-    <main className={styles.main}>
-      <div className={styles.container}>
-        <div className={styles.body}>
-          <Carousel
-            className={styles.carousel}
-            images={dragon?.flickr_images}
-          />
-          <Title className={styles.title} tag="h2">
-            {dragon.name}
-          </Title>
-          <p className={styles.disc}>{dragon.description}</p>
-          <p className="">
-            WiKi: <a href={dragon.wikipedia}>wikipedia</a>
-          </p>
-          <div className="d">
-            <Title tag="h3">OVERVIEW</Title>
-            <div className={styles.overview}>{overviewDragonEl}</div>
-          </div>
-        </div>
-      </div>
-    </main>
+    <View as="main">
+      <View padding="10px 20px 40px">
+        <Carousel images={dragon?.flickr_images || []} />
+        <Heading textAlign="center" marginBottom="10px" level={2}>
+          {dragon?.name || " "}
+        </Heading>
+        <Text marginBottom="20px">
+          {dragon?.description || " "}
+          <LinkAws href={dragon?.wikipedia || " "}>Wikipedia</LinkAws>
+        </Text>
+        <View>
+          <Heading marginBottom="10px" level={3}>
+            OVERVIEW
+          </Heading>
+          <View>{overviewDragonEl}</View>
+        </View>
+      </View>
+    </View>
   );
 };
 

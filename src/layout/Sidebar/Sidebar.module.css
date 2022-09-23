@@ -1,0 +1,46 @@
+.sidebar {
+  padding: 1.5rem;
+  background-color: var(--black);
+}
+
+.container {
+  margin: 0 auto;
+  position: sticky;
+  top: 20px;
+  left: 0;
+}
+
+.icon {
+  text-align: center;
+  color: var(--white);
+  border-radius: 20px;
+
+  transition: all 0.2s;
+}
+
+.icon:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+}
+
+.menu {
+  font-size: 24px;
+}
+
+.item {
+  margin: 0 auto;
+  padding: 10px 0;
+  display: block;
+  color: var(--white);
+  border-bottom: 1px solid var(--white);
+}
+
+.item a {
+  color: var(--white);
+
+  transition: all 0.2s;
+}
+
+.item a:hover {
+  color: var(--primary-hover);
+}

@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 
-export interface IFieldProps {
+export interface FieldProps {
   value?: string;
   label?: ReactNode;
-  type?: "text" | "password";
+  type?: "text" | "password" | "email";
   className?: string;
 }

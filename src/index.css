@@ -1,17 +1,14 @@
-/* box sizing */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Убираем внутренние отступы */
-ul[class],
-ol[class] {
+ul,
+ol {
   padding: 0;
 }
 
-/* Убираем внешние отступы */
 body,
 h1,
 h2,
@@ -29,27 +26,29 @@ dd {
   margin: 0;
 }
 
-/* Выставляем основные настройки по-умолчанию для body */
 body {
   min-height: 100vh;
   scroll-behavior: smooth;
-  background: #f5f6f8;
+  background: var(--gray-light);
   text-rendering: optimizeSpeed;
   line-height: 1.5;
 }
 
-/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
-ul[class],
-ol[class] {
+ul,
+ol {
   list-style: none;
 }
 
-/* Элементы a, сбрасываем до дефолтных стилей */
 a {
   text-decoration: none;
+
+  transition: all 0.2s ease-in-out;
 }
 
-/* Упрощаем работу с изображениями */
+a:hover {
+  color: red;
+}
+
 img {
   max-width: 100%;
   display: block;
