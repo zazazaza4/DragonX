@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "madappgangadfec3a5": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "dhqyjrhilrh01",
+          "type": "manual"
+        }
       }
     }
   }

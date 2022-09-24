@@ -17,12 +17,18 @@ const Profile: FC = () => {
       <div className="container">
         <Announcement>Profile</Announcement>
 
-        <Flex justifyContent="center">
+        <Flex marginTop="40px" justifyContent="center">
           <Authenticator>
             {({ signOut, user }) => {
               console.log(user);
               return (
-                <View>
+                <Flex
+                  direction="column"
+                  border="1px solid black"
+                  alignItems="center"
+                  justifyContent="center"
+                  padding="20px"
+                >
                   <Text fontSize="1.5rem">
                     Email:{" "}
                     <Text color={tokens.colors.blue[60]} as="span">
@@ -35,7 +41,7 @@ const Profile: FC = () => {
                       {user?.attributes?.email_verified ? "Yes" : "No"}
                     </Text>
                   </Text>
-                </View>
+                </Flex>
               );
             }}
           </Authenticator>

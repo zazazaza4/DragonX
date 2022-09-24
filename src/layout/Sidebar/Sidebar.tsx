@@ -1,6 +1,4 @@
 import { SidebarProps } from "./Sidebar.props";
-
-import styles from "./Sidebar.module.css";
 import { Link } from "react-router-dom";
 import {
   Authenticator,
@@ -8,38 +6,58 @@ import {
   Flex,
   Heading,
   View,
+  Link as UILink,
+  Divider,
 } from "@aws-amplify/ui-react";
+
+import styles from "../../styles/global.module.css";
 
 export const Sidebar = ({ className }: SidebarProps): JSX.Element => {
   return (
     <View className={className}>
       <Flex
+        backgroundColor="neutral.100"
         position="sticky"
         top="0"
         left="0"
-        backgroundColor="blue.40"
-        padding="20px"
         direction="column"
-        alignItems="center"
-        justifyContent="space-around"
+        alignItems="flex-end"
+        padding="30px"
+        justifyContent="flex-start"
         height="100vh"
       >
-        <Heading level={3} className={styles.icon}>
-          DragonSpaceX
-        </Heading>
-        <nav className={styles.menu}>
-          <ul>
-            <li className={styles.item}>
-              <Link to="/">Home</Link>
-            </li>
-            <li className={styles.item}>
-              <Link to="/me">Profile</Link>
-            </li>
-          </ul>
-        </nav>
+        <Link className={styles.link_scale} to="/">
+          <UILink fontSize="3.8rem" color="white">
+            DragonX
+          </UILink>
+        </Link>
+
+        <Divider />
+
+        <Link to="/">
+          <UILink fontSize="1.2rem" className={styles.link} color="white">
+            Home
+          </UILink>
+        </Link>
+
+        <Link to="/me">
+          <UILink fontSize="1.2rem" className={styles.link} color="white">
+            Profile
+          </UILink>
+        </Link>
 
         <Authenticator>
-          {({ signOut }) => <Button onClick={signOut}>Sign out</Button>}
+          {({ signOut }) => (
+            <UILink
+              marginTop="40px"
+              fontSize="1.8rem"
+              className={styles.link}
+              color="white"
+              onClick={signOut}
+            >
+              Sign out
+            </UILink>
+          )}
         </Authenticator>
       </Flex>
     </View>

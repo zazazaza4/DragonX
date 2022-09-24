@@ -1,24 +1,40 @@
+/* links */
 .link {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease !important;
 }
 
 .link:hover {
-  opacity: 0.5;
+  color: #047d95 !important;
+
   cursor: pointer;
 }
 
 .link:active {
-  color: brown;
+  color: #304050 !important;
   cursor: pointer;
 }
 
 .link_scale {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease !important;
 }
 
 .link_scale:active {
-  transform: scale(0.95);
+  transform: scale(0.8) !important;
 }
+
 .link_scale:hover {
-  transform: scale(1.05);
+  cursor: pointer;
+
+  transform: scale(1.15) !important;
 }
+/* background */
+.background__img {
+  background-image: url("../assets/main_img.jpg") !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% !important;
+  background-attachment: fixed !important;
+  background-position: 0 0 !important;
+}
+/* //#047D95
+//#304050
+//#e8f0fe */

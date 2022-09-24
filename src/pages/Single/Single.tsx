@@ -8,9 +8,10 @@ import {
   useTheme,
   View,
 } from "@aws-amplify/ui-react";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { Carousel } from "../../components";
+import { IDragon } from "../../interfaces/dragon.interface";
 import { withLayout } from "../../layout/Layout";
 import { useGetDragonQuery } from "../../redux/api/dragonApi";
 
@@ -19,9 +20,13 @@ const Single: FC = () => {
   const param = useParams();
 
   const id = param?.id || "";
-  const { isError, data: dragon, isLoading } = useGetDragonQuery(id);
+  const { data: dragonFetched } = useGetDragonQuery(id);
+  const dragon: IDragon | undefined = useMemo(
+    () => dragonFetched,
+    [dragonFetched]
+  );
 
-  if (isLoading) {
+  if (!dragon) {
     return (
       <Flex height="100vh" justifyContent="center" alignItems="center">
         <Loader width="10rem" />
@@ -97,7 +102,7 @@ const Single: FC = () => {
 
   return (
     <View as="main">
-      <View padding="10px 20px 40px">
+      <View maxWidth="900px" margin="0 auto" padding="10px 20px 40px">
         <Carousel images={dragon?.flickr_images || []} />
         <Heading textAlign="center" marginBottom="10px" level={2}>
           {dragon?.name || " "}

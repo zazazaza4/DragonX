@@ -13,7 +13,7 @@ export const Footer = ({ className = "" }: FooterProps) => {
     <View as="footer" className={className}>
       <Flex
         padding="20px"
-        backgroundColor={tokens.colors.blue[60]}
+        backgroundColor={tokens.colors.brand.primary[80]}
         direction="column"
         alignItems="center"
         justifyContent="center"
@@ -22,26 +22,13 @@ export const Footer = ({ className = "" }: FooterProps) => {
           onClick={() => navigate("/")}
           color={tokens.colors.white}
           level={4}
-          className={styles.link}
+          className={styles.link_scale}
         >
           DragonX
         </Heading>
         <Text textAlign="center" color={tokens.colors.white}>
           MadAppGang internship test – JavaScript developer intern
         </Text>
-      </Flex>
-
-      <Flex
-        alignItems="center"
-        justifyContent="center"
-        padding="5px 30px"
-        backgroundColor={tokens.colors.blue[80]}
-        direction="row"
-      >
-        <View color={tokens.colors.white}>
-          Copyright © 2020 - {new Date().getFullYear()} DragonX
-        </View>
-        <View></View>
       </Flex>
     </View>
   );
