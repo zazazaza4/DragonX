@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Carousel as ResponsiveCarousel } from "react-responsive-carousel";
 import { CarouselProps } from "./Carousel.props";
-import { Image } from "@aws-amplify/ui-react";
 
 import styles from "./Carousel.module.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";

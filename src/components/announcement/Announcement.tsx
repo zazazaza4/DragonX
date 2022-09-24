@@ -1,11 +1,22 @@
 import { FC } from "react";
-import { Flex, Heading, useTheme } from "@aws-amplify/ui-react";
+import {
+  Flex,
+  Heading,
+  useBreakpointValue,
+  useTheme,
+} from "@aws-amplify/ui-react";
 import { AnnouncementProps } from "./Announcement.props";
 
 import styles from "../../styles/global.module.css";
 
 const Announcement: FC<AnnouncementProps> = ({ children }) => {
   const { tokens } = useTheme();
+  const fontSizeHeading = useBreakpointValue({
+    small: "5rem",
+    large: "10rem",
+    base: "3rem",
+    medium: "7rem",
+  });
 
   return (
     <Flex
@@ -20,7 +31,7 @@ const Announcement: FC<AnnouncementProps> = ({ children }) => {
       overflow="hidden"
     >
       <Heading
-        fontSize="12rem"
+        fontSize={fontSizeHeading}
         color={tokens.colors.white}
         fontWeight="900"
         level={2}

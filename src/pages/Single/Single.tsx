@@ -10,7 +10,7 @@ import {
 } from "@aws-amplify/ui-react";
 import { FC, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { Carousel } from "../../components";
+import { Carousel, Error } from "../../components";
 import { IDragon } from "../../interfaces/dragon.interface";
 import { withLayout } from "../../layout/Layout";
 import { useGetDragonQuery } from "../../redux/api/dragonApi";
@@ -20,7 +20,7 @@ const Single: FC = () => {
   const param = useParams();
 
   const id = param?.id || "";
-  const { data: dragonFetched } = useGetDragonQuery(id);
+  const { data: dragonFetched, isError } = useGetDragonQuery(id);
   const dragon: IDragon | undefined = useMemo(
     () => dragonFetched,
     [dragonFetched]
@@ -30,6 +30,14 @@ const Single: FC = () => {
     return (
       <Flex height="100vh" justifyContent="center" alignItems="center">
         <Loader width="10rem" />
+      </Flex>
+    );
+  }
+
+  if (isError) {
+    return (
+      <Flex height="100vh" justifyContent="center" alignItems="center">
+        <Error />
       </Flex>
     );
   }
@@ -44,6 +52,7 @@ const Single: FC = () => {
     return (
       <>
         <Flex
+          key={title}
           padding="20px 10px"
           alignItems="center"
           justifyContent="space-between"

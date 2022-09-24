@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Authenticator } from "@aws-amplify/ui-react";
-import { Flex, Heading, View, Link as UILink } from "@aws-amplify/ui-react";
+import { Flex, View, Link as UILink } from "@aws-amplify/ui-react";
 import { HeaderProps } from "./Header.props";
 
 import styles from "../../styles/global.module.css";
@@ -14,9 +14,16 @@ export const Header = ({ className }: HeaderProps): JSX.Element => {
       className={className}
     >
       <Flex justifyContent="space-between" width="100%" alignItems="center">
-        <Heading color="white" level={5} textAlign="center">
-          DragonX
-        </Heading>
+        <Link to="/">
+          <UILink
+            fontWeight="600"
+            fontSize="1.5rem"
+            className={styles.link_scale}
+            color="white"
+          >
+            DragonX
+          </UILink>
+        </Link>
 
         <Flex alignItems="center">
           <Link to="/">

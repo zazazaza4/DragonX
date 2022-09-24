@@ -2,9 +2,7 @@ import { SidebarProps } from "./Sidebar.props";
 import { Link } from "react-router-dom";
 import {
   Authenticator,
-  Button,
   Flex,
-  Heading,
   View,
   Link as UILink,
   Divider,

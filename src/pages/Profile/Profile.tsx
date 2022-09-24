@@ -1,10 +1,4 @@
-import {
-  Authenticator,
-  Flex,
-  Text,
-  useTheme,
-  View,
-} from "@aws-amplify/ui-react";
+import { Authenticator, Flex, Text, useTheme } from "@aws-amplify/ui-react";
 import { FC } from "react";
 import { Announcement } from "../../components";
 import { withLayout } from "../../layout/Layout";
@@ -20,7 +14,6 @@ const Profile: FC = () => {
         <Flex marginTop="40px" justifyContent="center">
           <Authenticator>
             {({ signOut, user }) => {
-              console.log(user);
               return (
                 <Flex
                   direction="column"

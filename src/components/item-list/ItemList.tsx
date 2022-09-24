@@ -1,9 +1,25 @@
-import { Flex, Heading, Image, Text, View } from "@aws-amplify/ui-react";
+import {
+  Flex,
+  Heading,
+  Image,
+  Text,
+  useBreakpointValue,
+  View,
+} from "@aws-amplify/ui-react";
+
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { ItemListProps } from "./ItemList.props";
 
+import styles from "../../styles/global.module.css";
+
 const ItemList: FC<ItemListProps> = ({ dragon }) => {
+  const direction = useBreakpointValue({
+    small: "column",
+    base: "column",
+    medium: "row",
+  });
+
   const trunc = (str: string, length: number = 40) => {
     if (str.length > length) {
       return str.slice(0, length) + "...";
@@ -13,9 +29,14 @@ const ItemList: FC<ItemListProps> = ({ dragon }) => {
 
   return (
     <Flex maxHeight="500px" justifyContent="space-between" alignItems="center">
-      <Flex alignItems="center" justifyContent="flex-start">
+      <Flex
+        alignItems="center"
+        direction={direction}
+        justifyContent="flex-start"
+      >
         <Link to={`/dragons/${dragon.id}`}>
           <Image
+            className={styles.link_opacity}
             borderRadius="20px"
             objectFit="cover"
             height="20rem"
@@ -24,14 +45,24 @@ const ItemList: FC<ItemListProps> = ({ dragon }) => {
             src={dragon.flickr_images[0]}
           />
         </Link>
-        <View>
+        <View position="relative">
           <Link to={`/dragons/${dragon.id}`}>
-            <Heading level={2}>{dragon?.name}</Heading>
+            <Heading className={styles.link} level={2}>
+              {dragon?.name}
+            </Heading>
           </Link>
-          <Text>{trunc(dragon?.description, 120)}</Text>
+          <Text margin="20px 0">{trunc(dragon?.description, 120)}</Text>
+          <View
+            className={styles.link_scale}
+            fontSize="1.4rem"
+            position="absolute"
+            top="10px"
+            left="80%"
+          >
+            ❤️
+          </View>
         </View>
       </Flex>
-      <View>Top</View>
     </Flex>
   );
 };

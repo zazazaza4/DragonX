@@ -27,11 +27,26 @@
 
   transform: scale(1.15) !important;
 }
+
+.link_opacity {
+  transition: all 0.3s ease !important;
+}
+
+.link_opacity:active {
+  opacity: 0.6 !important;
+}
+
+.link_opacity:hover {
+  cursor: pointer;
+
+  opacity: 0.8 !important;
+}
+
 /* background */
 .background__img {
   background-image: url("../assets/main_img.jpg") !important;
   background-repeat: no-repeat !important;
-  background-size: 100% !important;
+  background-size: 100% 100% !important;
   background-attachment: fixed !important;
   background-position: 0 0 !important;
 }

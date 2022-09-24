@@ -1,7 +1,7 @@
-import { Divider, Flex, Heading, Loader, View } from "@aws-amplify/ui-react";
+import { Flex, Loader, View } from "@aws-amplify/ui-react";
 import { FC } from "react";
 import PullToRefresh from "react-simple-pull-to-refresh";
-import { Announcement, ItemList } from "../../components";
+import { Announcement, Error, ItemList } from "../../components";
 import { withLayout } from "../../layout/Layout";
 import { useGetDragonsQuery } from "../../redux/api/dragonApi";
 
@@ -16,17 +16,26 @@ const Main: FC = () => {
     );
   }
 
+  if (isError) {
+    return (
+      <Flex height="100vh" justifyContent="center" alignItems="center">
+        <Error />
+      </Flex>
+    );
+  }
+
   const handleRefresh = (): Promise<any> => new Promise((resolve) => refetch());
 
   return (
     <View as="main" className="main">
-      <View>
+      <View margin="0 10px">
         <Announcement>Dragons</Announcement>
         <PullToRefresh onRefresh={handleRefresh}>
           <Flex
-            margin="20px auto"
+            margin="40px auto"
             maxWidth="900px"
             alignItems="center"
+            gap="40px"
             justifyContent="center"
             direction="column"
           >

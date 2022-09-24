@@ -28,6 +28,7 @@ dd {
 
 body {
   min-height: 100vh;
+  font-size: 16px;
   scroll-behavior: smooth;
   background: var(--gray-light);
   text-rendering: optimizeSpeed;
