@@ -1,46 +1,75 @@
-import { Authenticator, Flex, Text, useTheme } from "@aws-amplify/ui-react";
-import { FC } from "react";
-import { Announcement } from "../../components";
+import {
+  Authenticator,
+  Button,
+  Flex,
+  Heading,
+  Text,
+  TextField,
+  useTheme,
+  View,
+} from "@aws-amplify/ui-react";
+import { FC, useState } from "react";
+import { Announcement, ChangePassword } from "../../components";
 import { withLayout } from "../../layout/Layout";
 
 const Profile: FC = () => {
   const { tokens } = useTheme();
+  const [isChangePassword, setIsChangePassword] = useState(false);
 
   return (
-    <main className="main">
-      <div className="container">
-        <Announcement>Profile</Announcement>
+    <View as="main">
+      <Announcement>Profile</Announcement>
 
-        <Flex marginTop="40px" justifyContent="center">
-          <Authenticator>
-            {({ signOut, user }) => {
-              return (
-                <Flex
-                  direction="column"
-                  border="1px solid black"
-                  alignItems="center"
-                  justifyContent="center"
-                  padding="20px"
-                >
-                  <Text fontSize="1.5rem">
-                    Email:{" "}
-                    <Text color={tokens.colors.blue[60]} as="span">
-                      {user?.attributes?.email}
+      <Heading padding="20px 20px 0 20px" textAlign="center" level={2}>
+        Setting
+      </Heading>
+
+      <Flex marginTop="10px" marginBottom="40px" justifyContent="center">
+        <Flex
+          direction="column"
+          alignItems="flex-start"
+          justifyContent="center"
+          padding="20px"
+        >
+          {isChangePassword ? (
+            <ChangePassword />
+          ) : (
+            <Authenticator>
+              {({ signOut, user }) => {
+                return (
+                  <>
+                    <TextField
+                      value={user?.attributes?.email}
+                      placeholder="Email"
+                      label="Email"
+                      errorMessage="There is an error"
+                    />
+
+                    <Text fontSize="1rem" color="#304050">
+                      Email Verified:{" "}
+                      <Text
+                        color={
+                          user?.attributes?.email_verified
+                            ? tokens.colors.green[60]
+                            : tokens.colors.red[100]
+                        }
+                        fontSize="1.5rem"
+                        as="span"
+                      >
+                        {user?.attributes?.email_verified ? "✓" : "✖️"}
+                      </Text>
                     </Text>
-                  </Text>
-                  <Text fontSize="1.5rem">
-                    Email Verified:{" "}
-                    <Text color={tokens.colors.blue[60]} as="span">
-                      {user?.attributes?.email_verified ? "Yes" : "No"}
-                    </Text>
-                  </Text>
-                </Flex>
-              );
-            }}
-          </Authenticator>
+                  </>
+                );
+              }}
+            </Authenticator>
+          )}
+          <Button onClick={() => setIsChangePassword(() => !isChangePassword)}>
+            {isChangePassword ? "Back to Setting" : "Change password"}
+          </Button>
         </Flex>
-      </div>
-    </main>
+      </Flex>
+    </View>
   );
 };
 export default withLayout(Profile);

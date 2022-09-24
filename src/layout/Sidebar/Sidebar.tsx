@@ -4,8 +4,8 @@ import {
   Authenticator,
   Flex,
   View,
-  Link as UILink,
   Divider,
+  Text,
 } from "@aws-amplify/ui-react";
 
 import styles from "../../styles/global.module.css";
@@ -25,28 +25,28 @@ export const Sidebar = ({ className }: SidebarProps): JSX.Element => {
         height="100vh"
       >
         <Link className={styles.link_scale} to="/">
-          <UILink fontSize="3.8rem" color="white">
+          <Text fontSize="3.8rem" color="white">
             DragonX
-          </UILink>
+          </Text>
         </Link>
 
         <Divider />
 
         <Link to="/">
-          <UILink fontSize="1.2rem" className={styles.link} color="white">
+          <Text fontSize="1.2rem" className={styles.link} color="white">
             Home
-          </UILink>
+          </Text>
         </Link>
 
         <Link to="/me">
-          <UILink fontSize="1.2rem" className={styles.link} color="white">
+          <Text fontSize="1.2rem" className={styles.link} color="white">
             Profile
-          </UILink>
+          </Text>
         </Link>
 
         <Authenticator>
           {({ signOut }) => (
-            <UILink
+            <Text
               marginTop="40px"
               fontSize="1.8rem"
               className={styles.link}
@@ -54,7 +54,7 @@ export const Sidebar = ({ className }: SidebarProps): JSX.Element => {
               onClick={signOut}
             >
               Sign out
-            </UILink>
+            </Text>
           )}
         </Authenticator>
       </Flex>

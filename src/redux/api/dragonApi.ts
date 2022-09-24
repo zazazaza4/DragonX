@@ -4,7 +4,7 @@ import { IDragon } from "../../interfaces/dragon.interface";
 const staggeredBaseQuery = retry(
   fetchBaseQuery({ baseUrl: "https://api.spacexdata.com/v4/" }),
   {
-    maxRetries: 5,
+    maxRetries: 10,
   }
 );
 export const dragonApi = createApi({
@@ -16,7 +16,7 @@ export const dragonApi = createApi({
     }),
     getDragon: build.query<IDragon, string>({
       query: (id) => ({ url: `dragons/${id}` }),
-      extraOptions: { maxRetries: 8 },
+      extraOptions: { maxRetries: 20 },
     }),
   }),
 });

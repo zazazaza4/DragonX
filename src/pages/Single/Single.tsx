@@ -8,23 +8,30 @@ import {
   useTheme,
   View,
 } from "@aws-amplify/ui-react";
-import { FC, useMemo } from "react";
+import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Carousel, Error } from "../../components";
 import { IDragon } from "../../interfaces/dragon.interface";
 import { withLayout } from "../../layout/Layout";
 import { useGetDragonQuery } from "../../redux/api/dragonApi";
 
-const Single: FC = () => {
-  const { tokens } = useTheme();
-  const param = useParams();
+import { useCache } from "../../hooks/useCache";
 
+const Single: FC = () => {
+  const [dragon, setDragon] = useState<IDragon | null | undefined>();
+  const { tokens } = useTheme();
+
+  const param = useParams();
   const id = param?.id || "";
-  const { data: dragonFetched, isError } = useGetDragonQuery(id);
-  const dragon: IDragon | undefined = useMemo(
-    () => dragonFetched,
-    [dragonFetched]
-  );
+
+  const { data, isError } = useGetDragonQuery(id);
+  const { retrieveData, updateCache } = useCache(data, id);
+
+  useEffect(() => {
+    setDragon(() => retrieveData());
+    updateCache(data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   if (!dragon) {
     return (

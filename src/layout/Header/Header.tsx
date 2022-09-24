@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { Authenticator } from "@aws-amplify/ui-react";
-import { Flex, View, Link as UILink } from "@aws-amplify/ui-react";
+import { Authenticator, Text } from "@aws-amplify/ui-react";
+import { Flex, View } from "@aws-amplify/ui-react";
 import { HeaderProps } from "./Header.props";
 
 import styles from "../../styles/global.module.css";
@@ -15,32 +15,34 @@ export const Header = ({ className }: HeaderProps): JSX.Element => {
     >
       <Flex justifyContent="space-between" width="100%" alignItems="center">
         <Link to="/">
-          <UILink
+          <Text
             fontWeight="600"
             fontSize="1.5rem"
             className={styles.link_scale}
             color="white"
           >
             DragonX
-          </UILink>
+          </Text>
         </Link>
 
         <Flex alignItems="center">
           <Link to="/">
-            <UILink className={styles.link} color="white">
+            <Text className={styles.link} color="white">
               Home
-            </UILink>
+            </Text>
           </Link>
 
           <Link to="/me">
-            <UILink color="white">Profile</UILink>
+            <Text className={styles.link} color="white">
+              Profile
+            </Text>
           </Link>
 
           <Authenticator>
             {({ signOut }) => (
-              <UILink onClick={signOut} color="white">
+              <Text className={styles.link} onClick={signOut} color="white">
                 Sign out
-              </UILink>
+              </Text>
             )}
           </Authenticator>
         </Flex>
