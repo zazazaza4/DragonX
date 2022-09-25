@@ -1,39 +1,21 @@
-import {
-  Flex,
-  Heading,
-  Image,
-  Text,
-  useBreakpointValue,
-  View,
-} from "@aws-amplify/ui-react";
+import { Flex, Heading, Image, Text, useBreakpointValue, View } from '@aws-amplify/ui-react';
+import { FC } from 'react';
+import { Link } from 'react-router-dom';
+import { ItemListProps } from './ItemList.props';
+import { trunc } from '../../utils/helpers';
 
-import { FC } from "react";
-import { Link } from "react-router-dom";
-import { ItemListProps } from "./ItemList.props";
-
-import styles from "../../styles/global.module.css";
+import styles from '../../styles/global.module.css';
 
 const ItemList: FC<ItemListProps> = ({ dragon }) => {
   const direction = useBreakpointValue({
-    small: "column",
-    base: "column",
-    medium: "row",
+    small: 'column',
+    base: 'column',
+    medium: 'row'
   });
-
-  const trunc = (str: string, length: number = 40) => {
-    if (str.length > length) {
-      return str.slice(0, length) + "...";
-    }
-    return str;
-  };
 
   return (
     <Flex maxHeight="500px" justifyContent="space-between" alignItems="center">
-      <Flex
-        alignItems="center"
-        direction={direction}
-        justifyContent="flex-start"
-      >
+      <Flex alignItems="center" direction={direction} justifyContent="flex-start">
         <Link to={`/dragons/${dragon.id}`}>
           <Image
             className={styles.link_opacity}
@@ -57,8 +39,7 @@ const ItemList: FC<ItemListProps> = ({ dragon }) => {
             fontSize="1.4rem"
             position="absolute"
             top="10px"
-            left="80%"
-          >
+            left="80%">
             ❤️
           </View>
         </View>
@@ -68,3 +49,5 @@ const ItemList: FC<ItemListProps> = ({ dragon }) => {
 };
 
 export default ItemList;
+
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt itaque consectetur quidem porro! Quasi cupiditate, totam dicta quos dolores blanditiis, tenetur vero reiciendis eligendi unde itaque sequi? Consectetur, temporibus dicta!

@@ -35,6 +35,7 @@ const Announcement: FC<AnnouncementProps> = ({ children }) => {
         color={tokens.colors.white}
         fontWeight="900"
         level={2}
+        id="children"
       >
         {children}
       </Heading>

@@ -17,7 +17,7 @@ const Profile: FC = () => {
   const [isChangePassword, setIsChangePassword] = useState(false);
 
   return (
-    <View as="main">
+    <View as="main" data-testid="proflie">
       <Announcement>Profile</Announcement>
 
       <Heading padding="20px 20px 0 20px" textAlign="center" level={2}>

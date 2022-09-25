@@ -117,7 +117,7 @@ const Single: FC = () => {
   ];
 
   return (
-    <View as="main">
+    <View as="main" data-testid="single">
       <View maxWidth="900px" margin="0 auto" padding="10px 20px 40px">
         <Carousel images={dragon?.flickr_images || []} />
         <Heading textAlign="center" marginBottom="10px" level={2}>

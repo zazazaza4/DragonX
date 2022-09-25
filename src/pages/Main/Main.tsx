@@ -27,7 +27,7 @@ const Main: FC = () => {
   const handleRefresh = (): Promise<any> => new Promise((resolve) => refetch());
 
   return (
-    <View as="main" className="main">
+    <View as="main" data-testid="main">
       <View margin="0 10px">
         <Announcement>Dragons</Announcement>
         <PullToRefresh onRefresh={handleRefresh}>

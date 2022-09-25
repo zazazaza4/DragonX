@@ -1,1 +1,6 @@
 import "@testing-library/jest-dom";
+function noOp() {}
+
+if (typeof window.URL.createObjectURL === "undefined") {
+  Object.defineProperty(window.URL, "createObjectURL", { value: noOp });
+}

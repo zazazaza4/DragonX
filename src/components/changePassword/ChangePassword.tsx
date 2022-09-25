@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, FormEvent, useState } from "react";
 import { useNavigate } from "react-router";
 import { Auth } from "aws-amplify";
-import { PasswordField, Button } from "@aws-amplify/ui-react";
+import { PasswordField, Button, Text } from "@aws-amplify/ui-react";
 
 const ChangePassword: FC = () => {
   const nav = useNavigate();
@@ -9,16 +9,23 @@ const ChangePassword: FC = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isChanging, setIsChanging] = useState(false);
+  const [error, setError] = useState(false);
 
   async function handleChangeClick(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
     setIsChanging(true);
 
-    console.log("adad");
+    if (
+      password.length === 0 ||
+      confirmPassword.length === 0 ||
+      password !== confirmPassword
+    ) {
+      setError(true);
+      return;
+    }
+
     try {
       const currentUser = await Auth.currentAuthenticatedUser();
-      console.log(currentUser);
       await Auth.changePassword(currentUser, oldPassword, password);
 
       nav("/");
@@ -27,7 +34,6 @@ const ChangePassword: FC = () => {
       setConfirmPassword("");
     } catch (error) {
       console.log(error);
-
       setIsChanging(false);
     }
   }
@@ -40,6 +46,7 @@ const ChangePassword: FC = () => {
           }
           value={oldPassword}
           label="Current password"
+          placeholder="Your current password..."
           name="current_password"
           autoComplete="current-password"
         />
@@ -49,6 +56,7 @@ const ChangePassword: FC = () => {
           }
           value={password}
           label="New password"
+          placeholder="New password..."
           name="new_password"
           autoComplete="new-password"
         />
@@ -58,9 +66,13 @@ const ChangePassword: FC = () => {
           }
           value={confirmPassword}
           label="Confirm password"
+          placeholder="Confirm password..."
           name="confirm_password"
           autoComplete="new-password"
         />
+        {error ? (
+          <Text color="#f12">Passwords don't match or are too small</Text>
+        ) : null}
         <Button marginTop="20px" isLoading={isChanging} type="submit">
           Submit
         </Button>

@@ -6,18 +6,19 @@ import styles from "../../styles/global.module.css";
 
 const Error: FC = () => {
   return (
-    <Text fontSize="3rem" textAlign="center" margin="10px">
+    <View fontSize="3rem" textAlign="center" margin="10px">
       Something went wrong
-      <View fontSize="2rem">
+      <Text fontSize="2rem">
         <Link
           to="/"
+          data-testid="go-to-home"
           className={styles.link}
           style={{ color: "#233", textDecoration: "underline" }}
         >
           Go to Home
         </Link>
-      </View>
-    </Text>
+      </Text>
+    </View>
   );
 };
 
