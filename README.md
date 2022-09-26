@@ -1,6 +1,34 @@
-# Getting Started with Create React App
+# MadAppGang internship test – JavaScript developer intern
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Basic task
+
+## Additional tasks
+### A carousel of images
+Carousel component for React apps. The component takes one parameter called images and returns a carousel. Where images are an array of strings with src
+```
+<Carousel images={flickr_images}>
+```
+### Data caching
+ A React hook for accessing an key/value cache that persists data between renders and components. This allows you to do neat stuff like preload data before your next page or component has even started mounting.
+```
+useCache(value, key);
+```
+### Interface design
+Adaptive web design with React. Grid + Amplify UI Components
+### Dragons list
+The dragons page get a list of dragons and display as a list with pictures. (https://api.spacexdata.com/v4/dragons). When you click on an item in the list, the data for the selected dragon will be displayed on the screen.
+Pull-to-refresh:
+```
+<PullToRefresh>
+         ...
+</PullToRefresh>
+```
+### Deploy in the cloud: https://dev.dhqyjrhilrh01.amplifyapp.com/
+### Setting up CI/CD for deployment
+### Authentication
+- It is possible to login / register (2FA)
+- Ability to edit password
+### Tests
 
 ## Available Scripts
 
