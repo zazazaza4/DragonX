@@ -1,7 +1,12 @@
 # MadAppGang internship test – JavaScript developer intern
 
 ## Basic task
-
+The first page shows information on SpaceX's Dragon rocket. (https://api.spacexdata.com/v4/dragons/5e9d058759b1ff74a7ad5f8f)
+-  A carousel of images
+- Name
+- Description
+- Link to Wikipedia
+- Additional parameters
 ## Additional tasks
 ### A carousel of images
 Carousel component for React apps. The component takes one parameter called images and returns a carousel. Where images are an array of strings with src
