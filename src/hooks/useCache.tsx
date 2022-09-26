@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from 'react';
 
 const CACHES: {
   [key: string]: unknown;
@@ -12,6 +12,7 @@ export type UseCacheType<T> = {
 
 export const useCache = <T,>(getData: T, dataKey: string): UseCacheType<T> => {
   const [count, setCount] = useState<number>(0);
+  const [isRemove, setIsRemove] = useState<boolean>(false);
 
   const key = useMemo(() => dataKey, [dataKey]);
 
@@ -24,6 +25,7 @@ export const useCache = <T,>(getData: T, dataKey: string): UseCacheType<T> => {
   );
 
   const removeCache = useCallback(() => {
+    setIsRemove(() => true);
     delete CACHES[key];
     setCount(Date.now());
   }, [key]);
@@ -34,7 +36,7 @@ export const useCache = <T,>(getData: T, dataKey: string): UseCacheType<T> => {
     if (cachedData === undefined) {
       const data = getData;
 
-      if (data === null) {
+      if (data === null || isRemove) {
         return null;
       }
 
@@ -49,6 +51,6 @@ export const useCache = <T,>(getData: T, dataKey: string): UseCacheType<T> => {
   return {
     retrieveData,
     updateCache,
-    removeCache,
+    removeCache
   };
 };

@@ -50,4 +50,3 @@ const ItemList: FC<ItemListProps> = ({ dragon }) => {
 
 export default ItemList;
 
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt itaque consectetur quidem porro! Quasi cupiditate, totam dicta quos dolores blanditiis, tenetur vero reiciendis eligendi unde itaque sequi? Consectetur, temporibus dicta!
