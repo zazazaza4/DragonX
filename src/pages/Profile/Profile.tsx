@@ -6,11 +6,11 @@ import {
   Text,
   TextField,
   useTheme,
-  View,
-} from "@aws-amplify/ui-react";
-import { FC, useState } from "react";
-import { Announcement, ChangePassword } from "../../components";
-import { withLayout } from "../../layout/Layout";
+  View
+} from '@aws-amplify/ui-react';
+import { FC, useState } from 'react';
+import { Announcement, ChangePassword } from '../../components';
+import { withLayout } from '../../layout/Layout';
 
 const Profile: FC = () => {
   const { tokens } = useTheme();
@@ -25,12 +25,7 @@ const Profile: FC = () => {
       </Heading>
 
       <Flex marginTop="10px" marginBottom="40px" justifyContent="center">
-        <Flex
-          direction="column"
-          alignItems="flex-start"
-          justifyContent="center"
-          padding="20px"
-        >
+        <Flex direction="column" alignItems="flex-start" justifyContent="center" padding="20px">
           {isChangePassword ? (
             <ChangePassword />
           ) : (
@@ -39,14 +34,15 @@ const Profile: FC = () => {
                 return (
                   <>
                     <TextField
-                      value={user?.attributes?.email}
+                      value={user?.attributes?.email || ''}
                       placeholder="Email"
                       label="Email"
+                      readOnly
                       errorMessage="There is an error"
                     />
 
                     <Text fontSize="1rem" color="#304050">
-                      Email Verified:{" "}
+                      Email Verified:{' '}
                       <Text
                         color={
                           user?.attributes?.email_verified
@@ -54,9 +50,8 @@ const Profile: FC = () => {
                             : tokens.colors.red[100]
                         }
                         fontSize="1.5rem"
-                        as="span"
-                      >
-                        {user?.attributes?.email_verified ? "✓" : "✖️"}
+                        as="span">
+                        {user?.attributes?.email_verified ? '✓' : '✖️'}
                       </Text>
                     </Text>
                   </>
@@ -65,7 +60,7 @@ const Profile: FC = () => {
             </Authenticator>
           )}
           <Button onClick={() => setIsChangePassword(() => !isChangePassword)}>
-            {isChangePassword ? "Back to Setting" : "Change password"}
+            {isChangePassword ? 'Back to Setting' : 'Change password'}
           </Button>
         </Flex>
       </Flex>

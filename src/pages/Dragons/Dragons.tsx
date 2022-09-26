@@ -8,6 +8,8 @@ import { useGetDragonsQuery } from '../../redux/api/dragonApi';
 const Dragons: FC = () => {
   const { isError, data = [], isLoading, refetch } = useGetDragonsQuery();
 
+  const handleRefresh = (): Promise<any> => new Promise((resolve) => refetch());
+
   if (isLoading) {
     return (
       <Flex height="100vh" justifyContent="center" alignItems="center">
@@ -23,8 +25,6 @@ const Dragons: FC = () => {
       </Flex>
     );
   }
-
-  const handleRefresh = (): Promise<any> => new Promise((resolve) => refetch());
 
   return (
     <View as="main" data-testid="main">

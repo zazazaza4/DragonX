@@ -8,7 +8,7 @@ import {
   useTheme,
   View
 } from '@aws-amplify/ui-react';
-import { FC, useEffect, useState } from 'react';
+import { FC, Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Carousel, Error } from '../../components';
 import { IDragon } from '../../interfaces/dragon.interface';
@@ -57,8 +57,8 @@ const Single: FC = () => {
     subUnit: string
   ) => {
     return (
-      <>
-        <Flex key={title} padding="20px 10px" alignItems="center" justifyContent="space-between">
+      <Fragment key={title + value}>
+        <Flex padding="20px 10px" alignItems="center" justifyContent="space-between">
           <Heading level={6}>{title}</Heading>
           <Text fontWeight={700}>
             {value} {unit}
@@ -69,7 +69,7 @@ const Single: FC = () => {
           </Text>
         </Flex>
         <Divider />
-      </>
+      </Fragment>
     );
   };
 
