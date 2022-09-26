@@ -34,6 +34,11 @@ Pull-to-refresh:
 - It is possible to login / register (2FA)
 - Ability to edit password
 ### Tests
+##### Created tests for :
+- Announcement
+- ChangePassword
+- helpers
+- useCache
 
 ## Available Scripts
 
