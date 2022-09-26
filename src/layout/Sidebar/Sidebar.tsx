@@ -1,14 +1,9 @@
-import { SidebarProps } from "./Sidebar.props";
-import { Link } from "react-router-dom";
-import {
-  Authenticator,
-  Flex,
-  View,
-  Divider,
-  Text,
-} from "@aws-amplify/ui-react";
+import { SidebarProps } from './Sidebar.props';
+import { Link } from 'react-router-dom';
+import { Authenticator, Flex, View, Divider, Text } from '@aws-amplify/ui-react';
 
-import styles from "../../styles/global.module.css";
+import styles from '../../styles/global.module.css';
+import { DRAGONS_ROUTE, MAIN_ROUTE, PROFILE_ROUTE } from '../../utils/consts';
 
 export const Sidebar = ({ className }: SidebarProps): JSX.Element => {
   return (
@@ -22,9 +17,8 @@ export const Sidebar = ({ className }: SidebarProps): JSX.Element => {
         alignItems="flex-end"
         padding="30px"
         justifyContent="flex-start"
-        height="100vh"
-      >
-        <Link className={styles.link_scale} to="/">
+        height="100vh">
+        <Link className={styles.link_scale} to={MAIN_ROUTE}>
           <Text fontSize="3.8rem" color="white">
             DragonX
           </Text>
@@ -32,13 +26,19 @@ export const Sidebar = ({ className }: SidebarProps): JSX.Element => {
 
         <Divider />
 
-        <Link to="/">
+        <Link to={MAIN_ROUTE}>
           <Text fontSize="1.2rem" className={styles.link} color="white">
-            Home
+            Dragon
           </Text>
         </Link>
 
-        <Link to="/me">
+        <Link to={DRAGONS_ROUTE}>
+          <Text fontSize="1.2rem" className={styles.link} color="white">
+            Dragons
+          </Text>
+        </Link>
+
+        <Link to={PROFILE_ROUTE}>
           <Text fontSize="1.2rem" className={styles.link} color="white">
             Profile
           </Text>
@@ -51,8 +51,7 @@ export const Sidebar = ({ className }: SidebarProps): JSX.Element => {
               fontSize="1.8rem"
               className={styles.link}
               color="white"
-              onClick={signOut}
-            >
+              onClick={signOut}>
               Sign out
             </Text>
           )}

@@ -1,11 +1,12 @@
-import { FooterProps } from "./Footer.props";
+import { FooterProps } from './Footer.props';
 
-import { Flex, Heading, Text, useTheme, View } from "@aws-amplify/ui-react";
-import { useNavigate } from "react-router-dom";
+import { Flex, Heading, Text, useTheme, View } from '@aws-amplify/ui-react';
+import { useNavigate } from 'react-router-dom';
 
-import styles from "../../styles/global.module.css";
+import styles from '../../styles/global.module.css';
+import { MAIN_ROUTE } from '../../utils/consts';
 
-export const Footer = ({ className = "" }: FooterProps) => {
+export const Footer = ({ className = '' }: FooterProps) => {
   const { tokens } = useTheme();
   const navigate = useNavigate();
 
@@ -16,14 +17,12 @@ export const Footer = ({ className = "" }: FooterProps) => {
         backgroundColor={tokens.colors.brand.primary[80]}
         direction="column"
         alignItems="center"
-        justifyContent="center"
-      >
+        justifyContent="center">
         <Heading
-          onClick={() => navigate("/")}
+          onClick={() => navigate(MAIN_ROUTE)}
           color={tokens.colors.white}
           level={4}
-          className={styles.link_scale}
-        >
+          className={styles.link_scale}>
           DragonX
         </Heading>
         <Text textAlign="center" color={tokens.colors.white}>

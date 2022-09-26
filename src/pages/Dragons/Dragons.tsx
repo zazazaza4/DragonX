@@ -1,11 +1,11 @@
-import { Flex, Loader, View } from "@aws-amplify/ui-react";
-import { FC } from "react";
-import PullToRefresh from "react-simple-pull-to-refresh";
-import { Announcement, Error, ItemList } from "../../components";
-import { withLayout } from "../../layout/Layout";
-import { useGetDragonsQuery } from "../../redux/api/dragonApi";
+import { Flex, Loader, View } from '@aws-amplify/ui-react';
+import { FC } from 'react';
+import PullToRefresh from 'react-simple-pull-to-refresh';
+import { Announcement, Error, ItemList } from '../../components';
+import { withLayout } from '../../layout/Layout';
+import { useGetDragonsQuery } from '../../redux/api/dragonApi';
 
-const Main: FC = () => {
+const Dragons: FC = () => {
   const { isError, data = [], isLoading, refetch } = useGetDragonsQuery();
 
   if (isLoading) {
@@ -37,8 +37,7 @@ const Main: FC = () => {
             alignItems="center"
             gap="40px"
             justifyContent="center"
-            direction="column"
-          >
+            direction="column">
             {data.map((item) => {
               return <ItemList dragon={item} key={item.id} />;
             })}
@@ -48,4 +47,4 @@ const Main: FC = () => {
     </View>
   );
 };
-export default withLayout(Main);
+export default withLayout(Dragons);
