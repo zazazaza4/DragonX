@@ -29,7 +29,6 @@ Pull-to-refresh:
 </PullToRefresh>
 ```
 ### Deploy in the cloud: https://dev.dhqyjrhilrh01.amplifyapp.com/
-### Setting up CI/CD for deployment
 ### Authentication
 - It is possible to login / register (2FA)
 - Ability to edit password
